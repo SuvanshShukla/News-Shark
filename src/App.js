@@ -85,10 +85,26 @@ class App extends React.Component{
 
 
   pageChanged(p) {   
+    let arr = this.state.techNews
+    arr.page = p
+    this.setState({
+      techNews: arr
+    })  
+  }
+
+  pageChanged2(p) {   
     let arr = this.state.sportsNews
     arr.page = p
     this.setState({
       sportsNews: arr
+    })  
+  }
+
+  pageChanged3(p) {   
+    let arr = this.state.entNews
+    arr.page = p
+    this.setState({
+      entNews: arr
     })  
   }
 
@@ -103,10 +119,10 @@ class App extends React.Component{
      <div><Cardcomp tagNews={this.state.techNews} pageChanged={this.pageChanged.bind(this)}></Cardcomp></div>
      <hr />
      <h2>Sports News</h2>
-     <div><Cardcomp tagNews={this.state.sportsNews} pageChanged={this.pageChanged.bind(this)}></Cardcomp></div>
+     <div><Cardcomp tagNews={this.state.sportsNews} pageChanged={this.pageChanged2.bind(this)}></Cardcomp></div>
      <hr />
      <h2>Entertainment News</h2>
-     <div><Cardcomp tagNews={this.state.entNews} pageChanged={this.pageChanged.bind(this)}></Cardcomp></div>
+     <div><Cardcomp tagNews={this.state.entNews} pageChanged={this.pageChanged3.bind(this)}></Cardcomp></div>
      {/* <div><Cardcomp entFeed={this.state.entNews}></Cardcomp></div> */}
     </div>
   );
