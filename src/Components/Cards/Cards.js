@@ -7,8 +7,8 @@ import 'antd/dist/antd.css';
 
 function Cardcomp({tagNews, pageChanged}) {
   let pageSize = 5;
-  console.log(tagNews.articles,tagNews.page);
-  console.log(pageChanged);
+  /* console.log(tagNews.articles,tagNews.page);
+  console.log(pageChanged); */
   
   
     return (

@@ -6,12 +6,22 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import news_shark_png from './news_shark_png.png';
 
 
-function NavBar() {
+function NavBar({savedList, markRead, getdata}) {
   return ( 
-  <Navbar bg="primary" variant="dark">
-    <Navbar.Brand href="#home">News <Image src="src/news_shark_png.png" fluid/> Shark</Navbar.Brand>
+  <Navbar bg="dark" variant="dark">
+      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+        {getdata()}
+        {savedList.map((x,i)=>
+          <NavDropdown.Item>{x.title}
+          <Button bg="dark" onClick={()=>{markRead(i)}}>Read!</Button> 
+        </NavDropdown.Item>
+        )}                
+      </NavDropdown>
+    <Navbar.Brand href="#home">News <Image src={news_shark_png} width="50px" height="50px"/> Shark</Navbar.Brand>
     <Nav className="mr-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#features">Features</Nav.Link>

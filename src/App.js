@@ -5,6 +5,7 @@ import Carouselcomp from './Components/Carousel/Carousel';
 import axios from 'axios';
 import Tabcomp from './Components/Tabs/Tabs';
 import Cardcomp from './Components/Cards/Cards';
+import * as localforage from "localforage";
 
 
 
@@ -15,6 +16,7 @@ class App extends React.Component{
     this.state={};
     this.state.newsFeed=[];
     this.state.countryNews=[];
+    this.state.saved=[];
     this.state.sportsNews={
       articles:[],
       page:1
@@ -37,6 +39,7 @@ class App extends React.Component{
   }
 
   componentDidMount(){
+    this.gettingData();
     this.getCountryNews('us');
     this.getSportsNews();
     this.getEntNews();
@@ -48,7 +51,6 @@ class App extends React.Component{
    
     let url =  "https://newsapi.org/v2/top-headlines?country="+key+"&apiKey=ca99e124a90147ac8a0a516911f97495"
     axios.get(url).then(res=>{
-      console.log(res.data.articles);
       this.setState({
         countryNews: res.data.articles
       })
@@ -58,7 +60,6 @@ class App extends React.Component{
   getSportsNews(){
     let url = "https://newsapi.org/v2/everything?q=sports&apiKey=ca99e124a90147ac8a0a516911f97495"
     axios.get(url).then(res=>{
-      console.log(res.data.articles);
       this.setState({
         sportsNews:{articles: res.data.articles,page:1}
       })
@@ -108,12 +109,45 @@ class App extends React.Component{
     })  
   }
 
+  saveArticle(item){    
+    let m = this.state.saved;
+    let v = this.state.countryNews.indexOf(item);
+    m.push(this.state.countryNews[v]);
+
+    this.setState({
+      saved: m
+    })
+
+    localforage.setItem('save-articles', this.state.saved).then( res=> {
+      return localforage.getItem('save-articles');
+    })
+  }
+
+  markRead(i) {
+    let v = this.state.saved;
+    v.splice(i,1);
+    this.setState({
+      saved: v
+    })
+    localforage.setItem('save-articles', this.state.saved).then( res=> {
+      return localforage.getItem('save-articles');
+    })
+  }
+
+  gettingData(){
+    localforage.getItem('save-articles').then(res=>{
+      this.setState({
+        saved: res
+      })
+    })
+  }
+
  render() {
   return (
     <div className="App">
-     <NavBar></NavBar>
+     <NavBar savedList={this.state.saved} markRead={this.markRead.bind(this)} getdata={this.gettingData.bind(this)}></NavBar>
      <div><Carouselcomp newsFeed={this.state.newsFeed}></Carouselcomp></div>
-     <div><Tabcomp getCountryNews={this.getCountryNews.bind(this)}  countryNews={this.state.countryNews}></Tabcomp></div>
+     <div><Tabcomp getCountryNews={this.getCountryNews.bind(this)}  countryNews={this.state.countryNews} saveArticle={this.saveArticle.bind(this)}></Tabcomp></div>
      <hr />
      <h2>Tech News</h2>
      <div><Cardcomp tagNews={this.state.techNews} pageChanged={this.pageChanged.bind(this)}></Cardcomp></div>
@@ -123,7 +157,6 @@ class App extends React.Component{
      <hr />
      <h2>Entertainment News</h2>
      <div><Cardcomp tagNews={this.state.entNews} pageChanged={this.pageChanged3.bind(this)}></Cardcomp></div>
-     {/* <div><Cardcomp entFeed={this.state.entNews}></Cardcomp></div> */}
     </div>
   );
  }

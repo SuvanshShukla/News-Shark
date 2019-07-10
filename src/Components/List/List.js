@@ -1,13 +1,13 @@
 import React from 'react';
-import { List, Avatar, Icon } from 'antd';
+import { List, Avatar, Icon, Button } from 'antd';
 import 'antd/dist/antd.css';
 
-function Listcomp({arr}){
+function Listcomp({arr, saveArticle}){
 
 const listData = arr;   
     
 
-    for (let i = 0; i < 23; i++) {
+        for (let i = 0; i < 23; i++) {
         listData.push({
           href: 'http://ant.design',
           title: `ant design part ${i}`,
@@ -38,25 +38,28 @@ const listData = arr;
           }}
           dataSource={listData}
           
-          renderItem={item => (
+          renderItem={(item,i) => (
             <List.Item
-              key={item.title}
+              key={i}
               actions={[
                 <IconText type="star-o" text="156" />,
                 <IconText type="like-o" text="156" />,
                 <IconText type="message" text="2" />,
+                <Button onClick={()=>{saveArticle(item)}}>Save This Article</Button>
               ]}
               extra={
+                <a target="_blank" rel="noopener noreferrer" href={item.url}>
                 <img
                   width={272}
                   alt="logo"
                   src={item.urlToImage}
                 />
+                </a>
               }
             >
               <List.Item.Meta
                 avatar={<Avatar src={item.avatar} />}
-                title={<a href={item.href}>{item.title}</a>}
+                title={<a target="_blank" rel="noopener noreferrer" href={item.url}>{item.title}</a>}
                 description={item.description}
               />
               {item.content}
