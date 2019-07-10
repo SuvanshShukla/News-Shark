@@ -18,7 +18,7 @@ function NavBar({savedList, markRead, getdata, getQueryNews, getKeyword}) {
         {getdata()}
         {savedList.map((x,i)=>
           <NavDropdown.Item>{x.title}
-          <Button bg="dark" onClick={()=>{markRead(i)}}>Read!</Button> 
+          <Button bg="dark" onClick={()=>{markRead(i)}}> Mark as Read!</Button> 
         </NavDropdown.Item>
         )}                
       </NavDropdown>
