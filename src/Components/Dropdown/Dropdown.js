@@ -26,7 +26,7 @@ import { Menu, Dropdown, Icon } from 'antd';
         <Menu.Item onClick={()=>{gCN('tw')}}>
             Taiwan
         </Menu.Item>
-        <Menu.Item onClick={()=>{gCN('gb')}}>
+        <Menu.Item onClick={()=>{gCN('')}}>
             United Kingdom
         </Menu.Item>
       </Menu>
