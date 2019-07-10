@@ -9,10 +9,12 @@ import Dropcomp from '../Dropdown/Dropdown';
 
 const { TabPane } = Tabs;
 
-    const operations = <Dropcomp>Hover Over ME!!</Dropcomp>;
     
 
 function Tabcomp({countryNews,getCountryNews, saveArticle}) {
+
+  const operations = <Dropcomp gCN={getCountryNews}>Hover Over ME!!</Dropcomp>;
+
   return(
     <Tabs tabBarExtraContent={operations} onChange={getCountryNews}>
       <TabPane tab="US" key="us">
@@ -25,6 +27,7 @@ function Tabcomp({countryNews,getCountryNews, saveArticle}) {
 
       <TabPane tab="China" key="cn">
       <Listcomp arr={countryNews} saveArticle={saveArticle}></Listcomp>
+      {/* <Dropcomp countryNews={countryNews} gCN={getCountryNews}></Dropcomp> */}
     </TabPane>
     </Tabs>
 

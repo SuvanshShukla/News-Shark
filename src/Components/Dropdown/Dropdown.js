@@ -1,28 +1,37 @@
 import React from 'react';
 import { Menu, Dropdown, Icon } from 'antd';
 
-const menu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-          3rd menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-  );
 
 
-  function Dropcomp() {
+
+  function Dropcomp({countryNews, gCN}) {
+
+    const menu = (
+      <Menu>
+        <Menu.Item onClick={()=>{gCN('au')}}>
+            Austrailia
+        </Menu.Item>
+        <Menu.Item onClick={()=>{gCN('jp')}}>
+            Japan
+        </Menu.Item>
+        <Menu.Item onClick={()=>{gCN('no')}}>
+            Noway
+        </Menu.Item>
+        <Menu.Item onClick={()=>{gCN('kr')}}>
+            South Korea
+        </Menu.Item>
+        <Menu.Item onClick={()=>{gCN('se')}}>
+            Sweden
+        </Menu.Item>
+        <Menu.Item onClick={()=>{gCN('tw')}}>
+            Taiwan
+        </Menu.Item>
+        <Menu.Item onClick={()=>{gCN('gb')}}>
+            United Kingdom
+        </Menu.Item>
+      </Menu>
+    );
+
       return(
         <Dropdown overlay={menu}>
         <a className="ant-dropdown-link">

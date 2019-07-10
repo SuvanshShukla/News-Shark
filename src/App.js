@@ -17,6 +17,7 @@ class App extends React.Component{
     this.state.newsFeed=[];
     this.state.countryNews=[];
     this.state.saved=[];
+    this.state.query="";
     this.state.sportsNews={
       articles:[],
       page:1
@@ -48,7 +49,7 @@ class App extends React.Component{
 
   getCountryNews(key){
     console.log(key);
-   
+    
     let url =  "https://newsapi.org/v2/top-headlines?country="+key+"&apiKey=ca99e124a90147ac8a0a516911f97495"
     axios.get(url).then(res=>{
       this.setState({
@@ -81,6 +82,23 @@ class App extends React.Component{
       this.setState({
         techNews: {articles: res.data.articles, page:1}
       })
+    })
+  }
+
+  getKeyword(e){
+    this.setState({
+      query: e.target.value
+    })
+  }
+
+  getQueryNews(){
+    let url = "https://newsapi.org/v2/everything?q="+this.state.query+"&apiKey=ca99e124a90147ac8a0a516911f97495"
+    axios.get(url).then(res=>{
+      this.setState({
+        countryNews: res.data.articles
+      })
+      console.log(this.state.countryNews);
+      
     })
   }
 
@@ -145,7 +163,7 @@ class App extends React.Component{
  render() {
   return (
     <div className="App">
-     <NavBar savedList={this.state.saved} markRead={this.markRead.bind(this)} getdata={this.gettingData.bind(this)}></NavBar>
+     <NavBar savedList={this.state.saved} markRead={this.markRead.bind(this)} getdata={this.gettingData.bind(this)} getQueryNews={this.getQueryNews.bind(this)} getKeyword={this.getKeyword.bind(this)}></NavBar>
      <div><Carouselcomp newsFeed={this.state.newsFeed}></Carouselcomp></div>
      <div><Tabcomp getCountryNews={this.getCountryNews.bind(this)}  countryNews={this.state.countryNews} saveArticle={this.saveArticle.bind(this)}></Tabcomp></div>
      <hr />
