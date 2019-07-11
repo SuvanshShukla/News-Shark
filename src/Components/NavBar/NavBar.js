@@ -16,11 +16,11 @@ function NavBar({savedList, markRead, getdata, getQueryNews, getKeyword}) {
   <Navbar bg="dark" variant="dark">
       <NavDropdown title="Saved Articles" id="basic-nav-dropdown">
         {getdata()}
-        {savedList.map((x,i)=>
+        {savedList?savedList.map((x,i)=> //there was a problem with the initail build because it would't work in incognito so we had to make arrangements for an empty array of saved articles
           <NavDropdown.Item>{x.title}
           <Button bg="dark" onClick={()=>{markRead(i)}}> Mark as Read!</Button> 
         </NavDropdown.Item>
-        )}                
+        ):null}                
       </NavDropdown>
     <Navbar.Brand href="#home" text="justiy-content-center">News <Image src={news_shark_png2} width="50px" height="50px"/> Shark</Navbar.Brand>
     <Nav className="mr-auto">

@@ -155,7 +155,7 @@ class App extends React.Component{
   gettingData(){
     localforage.getItem('save-articles').then(res=>{
       this.setState({
-        saved: res
+        saved: res?res:[]     //over here we had to make arrangements for an empty arry so that at the beginning it would show an empty array and would still function as an array if we wanted to add something later on
       })
     })
   }
