@@ -1,15 +1,10 @@
 import React from 'react';
-// import ReactDOM from 'react-dom'
-// import Tabs from 'react-bootstrap/Tabs';
-// import Tab from 'react-bootstrap/Tab';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.css';
 import Listcomp from '../List/List.js';
 import Dropcomp from '../Dropdown/Dropdown';
 
-const { TabPane } = Tabs;
-
-    
+const { TabPane } = Tabs;    
 
 function Tabcomp({countryNews,getCountryNews, saveArticle}) {
 
@@ -27,7 +22,6 @@ function Tabcomp({countryNews,getCountryNews, saveArticle}) {
 
       <TabPane tab="China" key="cn">
       <Listcomp arr={countryNews} saveArticle={saveArticle}></Listcomp>
-      {/* <Dropcomp countryNews={countryNews} gCN={getCountryNews}></Dropcomp> */}
     </TabPane>
     </Tabs>
 

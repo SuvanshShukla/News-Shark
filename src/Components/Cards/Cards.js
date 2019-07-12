@@ -1,15 +1,11 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
 import CardGroup from 'react-bootstrap/CardGroup';
 import { Pagination } from 'antd';
 import 'antd/dist/antd.css';
 
 function Cardcomp({tagNews, pageChanged}) {
   let pageSize = 5;
-  /* console.log(tagNews.articles,tagNews.page);
-  console.log(pageChanged); */
-  
   
     return (
       <div>

@@ -3,10 +3,7 @@ import { List, Avatar, Icon, Button } from 'antd';
 import 'antd/dist/antd.css';
 
 function Listcomp({arr, saveArticle}){
-
 const listData = arr;   
-    
-
       
       const IconText = ({ type, text }) => (
         <span>

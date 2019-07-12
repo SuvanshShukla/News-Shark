@@ -1,10 +1,7 @@
 import React from 'react';
 import { Menu, Dropdown, Icon } from 'antd';
 
-
-
-
-  function Dropcomp({countryNews, gCN}) {
+  function Dropcomp({gCN}) {
 
     const menu = (
       <Menu>
